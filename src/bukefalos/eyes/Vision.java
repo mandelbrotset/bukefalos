@@ -24,7 +24,7 @@ public class Vision {
 			e.printStackTrace();
 		}
 		balls = new HashMap<Point, Integer>();
-		myPosition = new Point((lowerRightCorner.x - upperLeftCorner.x) / 2, (lowerRightCorner.y - upperLeftCorner.y) / 2);
+		myPosition = getCenterOfBallAt((lowerRightCorner.x - upperLeftCorner.x) / 2, (lowerRightCorner.y - upperLeftCorner.y) / 2);
 		System.out.println("myPosition: " + myPosition);
 		updateMySize();
 	}
@@ -79,30 +79,27 @@ public class Vision {
 		//TODO: implement..
 		// We will assume ideal conditions, meaning:
 		// The whole ball is visible on screen
-		int east = x;
-		int west = x;
+		Point horizontal = new Point(x, y);
 		
-		while(isABallHere(west, y)) {
-			west--;
+		while(isABallHere(horizontal.x, y)) {
+			horizontal.x--;
 		}
 		
-		while(isABallHere(east, y)) {
-			east++;
+		while(isABallHere(horizontal.y, y)) {
+			horizontal.y++;
 		}
 		
-		int vertical = y;
+		Point vertical = new Point(horizontal.x, y);
 		
-		if(!isABallHere(west, vertical+5)) {
-			while(isABallHere(west, vertical)) {
-				vertical--;
-			}
-		} else {
-			while(isABallHere(west, vertical)) {
-				vertical++;
-			}
+		while(isABallHere(horizontal.x, vertical.x)) {
+			vertical.x--;
 		}
 		
-		Point center = new Point((east-west)/2, Math.abs((vertical-y)/2));
+		while(isABallHere(horizontal.x, vertical.y)) {
+			vertical.y++;
+		}
+		
+		Point center = new Point((horizontal.y-horizontal.x)/2, (vertical.y-vertical.x)/2);
 		
 		return center;
 	}
