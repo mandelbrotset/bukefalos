@@ -81,6 +81,7 @@ public class Vision {
 		// We will assume ideal conditions, meaning:
 		// The whole ball is visible on screen
 		Point horizontal = new Point(x, y);
+		System.out.println("Får in X: " + x + " Y: " + y);
 		
 		while(isABallHere(horizontal.x, y)) {
 			horizontal.x--;
@@ -90,7 +91,7 @@ public class Vision {
 			horizontal.y++;
 		}
 		
-		Point vertical = new Point(horizontal.x, y);
+		Point vertical = new Point(y, y);
 		
 		while(isABallHere(horizontal.x, vertical.x)) {
 			vertical.x--;
@@ -100,7 +101,11 @@ public class Vision {
 			vertical.y++;
 		}
 		
+		
+		
 		Point center = new Point((horizontal.y-horizontal.x)/2, (vertical.y-vertical.x)/2);
+		
+		System.out.println("Beräknat X: " + center.x + " Y: " + center.y);
 		
 		return center;
 	}
