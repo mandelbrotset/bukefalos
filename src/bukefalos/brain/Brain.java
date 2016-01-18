@@ -17,29 +17,34 @@ public class Brain {
 	}
 	
 	public Point DecideAMove() {
+		System.out.println("Deciding a move..");
+		long t1 = System.currentTimeMillis();
 		vision.takeALook();
+		long t2 = System.currentTimeMillis();
+		System.out.println("Det tog " + Long.toString(t2-t1) + " ms att titta");
 		balls = vision.getBalls();
 		myPosition = vision.getMyPosition();
 		Point moveTo = new Point(0,0);
 		
 		Point enemy = getNearestDanger();
-		if (getDistance(myPosition, enemy) < 500) {
+		//if (getDistance(myPosition, enemy) < 500) {
 			moveTo = escapeFrom(enemy);
-		}
+		//}
 		
 		return getMovePosition(moveTo);
 	}
 	
 	private Point escapeFrom(Point position) {
+		System.out.println("escaping! :O");
 		Point direction = subtract(position, myPosition);
 		return new Point(direction.x * -1, direction.y * -1);
 	}
 	
 	private Point getMovePosition(Point position) {
-		Point towards = subtract(position, myPosition);
-		towards = getUnitVector(towards);
-		towards = multiply(towards, STEERING_DISTANCE);
-		return add(myPosition, towards);
+		//Point towards = subtract(position, myPosition);
+		//position = getUnitVector(position);
+		//position = multiply(position, STEERING_DISTANCE);
+		return add(myPosition, position);
 	}
 	
 	private Point add(Point p1, Point p2) {
@@ -60,6 +65,7 @@ public class Brain {
 	}
 	
 	private Point getNearestDanger() {
+		boolean hej = false;
 		int nearestDistance = Integer.MAX_VALUE;
 		Point nearest = new Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
 		for (Point enemy : balls.keySet()) {
@@ -68,9 +74,11 @@ public class Brain {
 				if (distance < nearestDistance) {
 					nearestDistance = distance;
 					nearest = enemy;
+					hej = true;
 				}
 			}
 		}
+		if (!hej) System.out.println("hej = false");
 		return nearest;
 	}
 	
