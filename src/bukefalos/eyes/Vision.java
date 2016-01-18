@@ -24,7 +24,7 @@ public class Vision {
 			e.printStackTrace();
 		}
 		balls = new HashMap<Point, Integer>();
-		myPosition = new Point((lowerRightCorner.x - upperLeftCorner.x) / 2, (upperLeftCorner.y - lowerRightCorner.y) / 2);
+		myPosition = new Point((lowerRightCorner.x - upperLeftCorner.x) / 2, (lowerRightCorner.y - upperLeftCorner.y) / 2);
 		System.out.println("myPosition: " + myPosition);
 		updateMySize();
 	}
