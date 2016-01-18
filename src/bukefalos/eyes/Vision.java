@@ -80,7 +80,7 @@ public class Vision {
 		//TODO: implement..
 		// We will assume ideal conditions, meaning:
 		// The whole ball is visible on screen
-		Point horizontal = new Point(x, y);
+		Point horizontal = new Point(x, x);
 		System.out.println("Får in X: " + x + " Y: " + y);
 		
 		while(isABallHere(horizontal.x, y)) {
@@ -103,7 +103,7 @@ public class Vision {
 		
 		
 		
-		Point center = new Point((horizontal.y-horizontal.x)/2, (vertical.y-vertical.x)/2);
+		Point center = new Point(horizontal.x + (horizontal.y-horizontal.x)/2, vertical.x + (vertical.y-vertical.x)/2);
 		
 		System.out.println("Beräknat X: " + center.x + " Y: " + center.y);
 		
@@ -118,8 +118,8 @@ public class Vision {
 		int realX = gamePosToRealPos(x, y).x;
 		int realY = gamePosToRealPos(x, y).y;
 		Color pixelColor = r.getPixelColor(realX, realY);
-		System.out.println("pixelColor: " + pixelColor.toString());
-		return (pixelColor == Color.white); 
+		System.out.println("pixel: " + x + ", " + y + ", Color: " + pixelColor.toString());
+		return (pixelColor.equals(Color.white)); 
 	}
 	
 	private boolean isGray(Color color) {
