@@ -109,7 +109,7 @@ public class Vision {
 	
 	private boolean isABallHere(int x, int y) { //need improvements!! What if it is an image with something white in?!
 		Color pixelColor = r.getPixelColor(x, y);
-		return (pixelColor != Color.white &&  !isGray(pixelColor)); 
+		return (pixelColor == Color.white); 
 	}
 	
 	private boolean isGray(Color color) {
