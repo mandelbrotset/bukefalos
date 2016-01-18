@@ -5,8 +5,8 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.Robot;
 import java.util.HashMap;
-import static bukefalos.Body.lowerLeftCorner;
-import static bukefalos.Body.upperRightCorner;
+import static bukefalos.Body.upperLeftCorner;
+import static bukefalos.Body.lowerRightCorner;
 
 public class Vision {
 	public static final int MIN_SIZE = 46; //uppskattning
@@ -24,7 +24,8 @@ public class Vision {
 			e.printStackTrace();
 		}
 		balls = new HashMap<Point, Integer>();
-		myPosition = getCenterOfBallAt((upperRightCorner.x - lowerLeftCorner.x) / 2, (upperRightCorner.y - lowerLeftCorner.y) / 2);
+		myPosition = getCenterOfBallAt((lowerRightCorner.x - upperLeftCorner.x) / 2, (lowerRightCorner.y - upperLeftCorner.y) / 2);
+		System.out.println("myPosition: " + myPosition);
 		updateMySize();
 	}
 	
@@ -34,13 +35,16 @@ public class Vision {
 	
 	private void updateMySize() {
 		mySize = getSizeOfBallAt(myPosition);
+		System.out.println("MySize: " + mySize);
 	}
 	
 	public void takeALook() {
+		System.out.println("takeALook");
 		balls.clear();
-		for (int x = lowerLeftCorner.x; x <= upperRightCorner.x; x += MIN_SIZE) {
-			for (int y = lowerLeftCorner.y; y <= upperRightCorner.y; y += MIN_SIZE) {
+		for (int x = upperLeftCorner.x; x <= lowerRightCorner.x; x += MIN_SIZE) {
+			for (int y = upperLeftCorner.y; y <= lowerRightCorner.y; y += MIN_SIZE) {
 				if (isABallHere(x, y)) {
+					System.out.println("Found ball at: " + x + ", " + y);
 					Point position = getCenterOfBallAt(x, y);
 					int size = getSizeOfBallAt(position);
 					balls.put(position, size);
@@ -59,16 +63,19 @@ public class Vision {
 	}
 	
 	private int getSizeOfBallAt(Point center) { //need improvements!! What if the ball is skewed or overlapping?
+		System.out.println("getSizeOfBall");
 		int x = center.x;
 		while (isABallHere(x, center.y)) {
 			x--;
 		}
+		System.out.println("getSizeOfBall done");
 		return (center.x - x) * 2;
 	}
 	
 	
 	
 	private Point getCenterOfBallAt(int x, int y) {
+		System.out.println("getCenterOfBallAt");
 		//TODO: implement..
 		// We will assume ideal conditions, meaning:
 		// The whole ball is visible on screen

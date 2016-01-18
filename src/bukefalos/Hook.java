@@ -15,7 +15,13 @@ public class Hook implements NativeKeyListener {
 	public void nativeKeyPressed(NativeKeyEvent arg0) {
 		System.out.println(arg0.getKeyCode());
 		if (arg0.getKeyCode() == 31) {
-			
+			System.out.println("Starting");
+			body.init();
+			body.start();
+		}
+		if (arg0.getKeyCode() == 25) {
+			System.out.println("Pause/unpause");
+			body.togglePause();
 		}
 	}
 

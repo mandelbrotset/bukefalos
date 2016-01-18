@@ -8,8 +8,8 @@ import bukefalos.brain.Brain;
 import bukefalos.eyes.Vision;
 
 public class Body extends Thread {
-	public static final Point lowerLeftCorner = new Point(0,0);
-	public static final Point upperRightCorner = new Point(0,0);
+	public static final Point upperLeftCorner = new Point(1,92);
+	public static final Point lowerRightCorner = new Point(1363,766);
 	
 	private boolean isRunning = true;
 	private boolean isPaused = true;
@@ -31,6 +31,10 @@ public class Body extends Thread {
 		vision.init();
 	}
 	
+	public void togglePause() {
+		isPaused = !isPaused;
+	}
+	
 	@Override
 	public void run() {
 		if (!isInterrupted() && isRunning) {
@@ -41,8 +45,10 @@ public class Body extends Thread {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				Point nextMove = brain.DecideAMove();
-				r.mouseMove(nextMove.x, nextMove.y);
+				if (!isPaused) {
+					Point nextMove = brain.DecideAMove();
+					r.mouseMove(nextMove.x, nextMove.y);
+				}
 			}
 		}
 	}

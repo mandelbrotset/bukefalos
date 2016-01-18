@@ -1,9 +1,5 @@
 package bukefalos;
 
-<<<<<<< HEAD
-public class Main {
-	
-=======
 import java.util.logging.LogManager;
 
 import org.jnativehook.GlobalScreen;
@@ -23,5 +19,4 @@ public class Main {
 		
 		GlobalScreen.getInstance().addNativeKeyListener(hook);
 	}
->>>>>>> bb2a8a049c3627ca64f38580b01cb9e33b7d2cf3
 }
