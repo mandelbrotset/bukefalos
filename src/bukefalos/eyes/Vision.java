@@ -110,8 +110,14 @@ public class Vision {
 		return center;
 	}
 	
+	Point gamePosToRealPos(int x, int y) {
+		return new Point(x + upperLeftCorner.x, y + upperLeftCorner.y); 
+	}
+	
 	private boolean isABallHere(int x, int y) { //need improvements!! What if it is an image with something white in?!
-		Color pixelColor = r.getPixelColor(x, y);
+		int realX = gamePosToRealPos(x, y).x;
+		int realY = gamePosToRealPos(x, y).y;
+		Color pixelColor = r.getPixelColor(realX, realY);
 		System.out.println("pixelColor: " + pixelColor.toString());
 		return (pixelColor == Color.white); 
 	}
