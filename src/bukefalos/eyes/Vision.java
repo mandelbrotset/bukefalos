@@ -93,11 +93,11 @@ public class Vision {
 		
 		Point vertical = new Point(y, y);
 		
-		while(isABallHere(horizontal.x, vertical.x)) {
+		while(isABallHere(x, vertical.x)) {
 			vertical.x--;
 		}
 		
-		while(isABallHere(horizontal.x, vertical.y)) {
+		while(isABallHere(x, vertical.y)) {
 			vertical.y++;
 		}
 		
