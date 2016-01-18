@@ -66,6 +66,7 @@ public class Vision {
 		System.out.println("getSizeOfBall");
 		int x = center.x;
 		while (isABallHere(x, center.y)) {
+			System.out.println("nu är vi i loopen");
 			x--;
 		}
 		System.out.println("getSizeOfBall done");
@@ -109,6 +110,7 @@ public class Vision {
 	
 	private boolean isABallHere(int x, int y) { //need improvements!! What if it is an image with something white in?!
 		Color pixelColor = r.getPixelColor(x, y);
+		System.out.println("pixelColor: " + pixelColor.toString());
 		return (pixelColor == Color.white); 
 	}
 	
