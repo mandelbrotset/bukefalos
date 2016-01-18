@@ -67,9 +67,38 @@ public class Vision {
 		return (center.x - x) * 2;
 	}
 	
+	
+	
 	private Point getCenterOfBallAt(int x, int y) {
 		//TODO: implement..
-		return null;
+		// We will assume ideal conditions, meaning:
+		// The whole ball is visible on screen
+		int east = x;
+		int west = x;
+		
+		while(isABallHere(west, y)) {
+			west--;
+		}
+		
+		while(isABallHere(east, y)) {
+			east++;
+		}
+		
+		int vertical = y;
+		
+		if(!isABallHere(west, vertical+5)) {
+			while(isABallHere(west, vertical)) {
+				vertical--;
+			}
+		} else {
+			while(isABallHere(west, vertical)) {
+				vertical++;
+			}
+		}
+		
+		Point center = new Point((east-west)/2, Math.abs((vertical-y)/2));
+		
+		return center;
 	}
 	
 	private boolean isABallHere(int x, int y) { //need improvements!! What if it is an image with something white in?!
