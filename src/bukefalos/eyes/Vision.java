@@ -16,8 +16,7 @@ public class Vision {
 	private int mySize;
 	private Point myPosition;
 	
-	
-	public Vision() {
+	public void init() {
 		try {
 			r = new Robot();
 		} catch (AWTException e) {

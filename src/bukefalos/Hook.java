@@ -4,11 +4,17 @@ import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
 public class Hook implements NativeKeyListener {
-
+	private Body body;
+	
+	public Hook(Body body) {
+		super();
+		this.body = body;
+	}
+	
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent arg0) {
-		
-		if (arg0.getKeyCode() == 23) {
+		System.out.println(arg0.getKeyCode());
+		if (arg0.getKeyCode() == 31) {
 			
 		}
 	}

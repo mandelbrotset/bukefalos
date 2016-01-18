@@ -26,6 +26,10 @@ public class Body extends Thread {
 			e.printStackTrace();
 		}
 	}
+
+	public void init() {
+		vision.init();
+	}
 	
 	@Override
 	public void run() {
